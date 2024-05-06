@@ -9,5 +9,23 @@ jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
-      - name: Print a greeting
-        run: echo "Hello! Welcome to GitHub Actions!"
+      - name: Greet
+        run: |
+          echo "------ Start des Skripts ------"
+          # Bash-Skript für Grußnachrichten
+          current_hour=$(date +%H)
+          current_day=$(date +%u)
+          if [ $current_hour -ge 5 ] && [ $current_hour -lt 12 ]; then
+              greeting="Guten Morgen!"
+          elif [ $current_hour -ge 12 ] && [ $current_hour -lt 18 ]; then
+              greeting="Guten Tag!"
+          else
+              greeting="Guten Abend!"
+          fi
+          if [ $current_day -eq 6 ] || [ $current_day -eq 7 ]; then
+              weekend="Schönes Wochenende!"
+          else
+              weekend=""
+          fi
+          echo "$greeting $weekend Willkommen zu GitHub Actions!"
+          echo " Und.. ENDE ..des..Skripts"
